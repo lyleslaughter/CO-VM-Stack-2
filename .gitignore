@@ -1,0 +1,5 @@
+# macOS metadata
+.DS_Store
+
+# Local-only notes — credentials, IPs, anything sensitive (INFRA convention)
+*.local.md
