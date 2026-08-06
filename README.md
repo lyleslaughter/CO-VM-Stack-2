@@ -16,7 +16,7 @@ UPS feeds in place.
 | **Status** | Active — racking not yet started |
 | **Next milestone** | Rack elevation drafted + equipment racked |
 | **Blockers** | None |
-| **Last update** | 2026-08-05 |
+| **Last update** | 2026-08-06 |
 
 ## Workstreams
 

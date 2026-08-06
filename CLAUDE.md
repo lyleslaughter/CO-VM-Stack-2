@@ -39,9 +39,12 @@ Link to sibling repos rather than copying their content.
 
 - `README.md` — live dashboard (status, next milestone, blockers). Keep it
   current after every working session.
-- `workstreams/*.md` — one file per workstream, all following the shape:
-  **Goal**, **Current state**, **Open questions**, **Next steps** (`- [ ]`
-  checklist), **Asana** link.
+- `workstreams/*.md` — one file per workstream. The default shape is
+  **Goal**, **Current state**, **Open questions**, **Next steps**
+  (`- [ ]` checklist), **Asana** link — used where it fits. Runbook-style
+  files (`bring-up.md`) and standing-rules files
+  (`held-vms-and-cold-storage.md`) adapt that shape to their content, but
+  always keep a **Goal** and an **Asana** link.
 - `photos/aep-teardown-2026-07-07/` — the re-cabling reference. Morning
   shots = labeled cabling as-built at AEP; afternoon = emptied racks.
 - `docs/superpowers/` — specs and plans.

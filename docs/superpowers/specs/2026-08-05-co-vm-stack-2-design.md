@@ -42,7 +42,7 @@ workstreams/
 photos/aep-teardown-2026-07-07/  — 28 reference photos (renamed from "AEP Pictures/"), committed as-is (42 MB total)
 ```
 
-Each workstream file follows the AEP-repo shape: **Goal / Current state / Open questions / Next steps (`- [ ]` checklist) / Asana link**.
+Most workstream files follow the AEP-repo shape: **Goal / Current state / Open questions / Next steps (`- [ ]` checklist) / Asana link**. Runbook-style files (`bring-up.md`) and standing-rules files (`held-vms-and-cold-storage.md`) adapt that shape to their content, but always keep a **Goal** and an **Asana link**.
 
 ## Conventions
 
@@ -62,7 +62,7 @@ Same as sibling repos:
 
 ## Git
 
-Independent repo (like the other ten INFRA subprojects), branch `main`, existing remote `https://github.com/lyleslaughter/CO-VM-Stack-2.git`. Initial commit contains this spec, README, CLAUDE.md, workstreams, and photos; pushed to origin.
+Independent repo (like the other ten INFRA subprojects), branch `main`, existing remote `https://github.com/lyleslaughter/CO-VM-Stack-2.git`. History is a series of small commits — spec first, then the implementation plan, then one commit per deliverable — all pushed to origin.
 
 ## Testing / verification
 
