@@ -6,11 +6,13 @@ All moved AEP equipment physically racked in the prepared CO rack, dual-fed
 across the two UPS/PDU feeds, and cabled per the teardown photos — ready for
 the power-on sequence in [bring-up.md](./bring-up.md).
 
-## Current state (2026-08-05)
+## Current state (2026-08-11)
 
-- Equipment powered off, moved to the CO datacenter 2026-07-07, staged and
-  ready to rack (Asana comment 2026-07-08).
-- Destination rack completely stripped of old gear.
+- **Racked 2026-08-11**: switches, PowerStore, and hosts are in the rack and
+  cable management is installed. Power + data cabling planned for 2026-08-12.
+- Equipment was powered off, moved to the CO datacenter 2026-07-07, staged
+  (Asana comment 2026-07-08).
+- Destination rack was stripped of old gear before racking.
 - PDUs for two separate UPSs are installed in the rack.
 - Cabling reference: [../photos/aep-teardown-2026-07-07/](../photos/aep-teardown-2026-07-07/)
   — morning shots show the labeled cabling as-built at AEP (port labels like
@@ -32,16 +34,15 @@ Full per-device detail (service tags, firmware, IPs) lives in
 
 ## Open questions
 
-- Rack elevation plan (which U for each device): TBD
 - UPS-A / UPS-B outlet mapping per PSU: TBD
 - Do the cold-storage boxes rack here or shelve elsewhere at CO? TBD
 
 ## Next steps
 
-- [ ] Draft rack elevation (top-of-rack switches, storage, hosts, cold-storage boxes)
-- [ ] Rack the two S5212F-ON switches
-- [ ] Rack the PowerStore 500T
-- [ ] Rack the three R650 hosts
+- [x] Draft rack elevation (placement decided at racking 2026-08-11 — as-built elevation still to be recorded below)
+- [x] Rack the two S5212F-ON switches (2026-08-11)
+- [x] Rack the PowerStore 500T (2026-08-11)
+- [x] Rack the three R650 hosts (2026-08-11)
 - [ ] Decide placement for AEPCECAM01 and aiu-002-transporter-01
 - [ ] Power-cable every device dual-feed: PSU1 → UPS-A PDU, PSU2 → UPS-B PDU
 - [ ] Cable data per the teardown photos and existing port labels (do not power on — power-on order is owned by [bring-up.md](./bring-up.md))
