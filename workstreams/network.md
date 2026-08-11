@@ -14,6 +14,30 @@ management/iSCSI/vMotion connectivity working, and an addressing decision
 - The AIU LAN at CO is `10.20.0.0/16` with the gateway at `10.20.0.1`.
 - No uplink or addressing decisions made yet.
 
+## Open decision: uplink architecture (as of 2026-08-11)
+
+The S5212F-ON pair stays as this stack's ToRs either way; the question is
+the path to the core, using the three Meraki switches that came over from
+AEP (an SFP fiber pair + a copper switch) or not:
+
+- **Option A — direct to existing core switching**: QSFP → quad-SFP breakout
+  fiber from each S5212F-ON to the CO core; management lands on existing CO
+  copper if ports are available. Fewer devices/failure points, less UPS
+  draw, no recurring Meraki licenses (Meraki switches stop forwarding when
+  licensing lapses). Isolation for east-west traffic (iSCSI/vMotion/VM-VM)
+  is unaffected — that never leaves the Dells.
+- **Option B — dedicated Meraki layer**: the Meraki SFP pair as a redundant
+  data aggregation layer between the ToRs and the core, plus the Meraki
+  copper switch for iDRAC/OOB management. Buys a private north-south
+  aggregation layer and dashboard visibility, at the cost of two extra
+  hops, power, and per-device recurring licenses.
+
+**Leaning (2026-08-11): Option A** — sleeping on it. Pre-reqs to verify for
+Option A: spare SFP ports + optic compatibility on the core, both ToRs get
+their own uplink path, core ports can trunk this stack's VLANs, and whether
+the CO management copper network has spare ports (if not, the single Meraki
+copper switch for OOB is still on the table).
+
 ## Open questions
 
 - Keep the `10.12.x` subnet and route it at CO, or re-IP the stack into CO
