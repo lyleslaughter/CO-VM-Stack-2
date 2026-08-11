@@ -51,9 +51,9 @@ aiu-002-transporter-01 already cover point-in-time recovery).
 | AEPCECAM01 | Milestone camera footage retention from the AEP site | End date TBD — do not wipe |
 | aiu-002-transporter-01 | Nakivo appliance — holds the 2026-06-22 aep.local DC image backups | Keep until disk-destroy decision executed — do not wipe |
 
-- [ ] Decide physical placement (racked here vs. shelved) — coordinate with [rack-and-cable.md](./rack-and-cable.md)
+- [x] Decide physical placement — both boxes **shelved in the CO datacenter** (not racked), 2026-08-11
 - [ ] Confirm AEPCECAM01 footage retention end date with stakeholders
-- [ ] Record power state expectations (powered on for access, or off until needed?)
+- [x] Record power state — both boxes **off, no power, no network** until needed (as of 2026-08-11)
 
 ## Asana
 
