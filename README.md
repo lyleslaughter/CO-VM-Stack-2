@@ -16,14 +16,14 @@ UPS feeds in place.
 | **Status** | Active — equipment racked, cabling next |
 | **Next milestone** | Power (dual-feed) + data cabling per teardown photos — planned 2026-08-12 |
 | **Blockers** | None |
-| **Last update** | 2026-08-11 |
+| **Last update** | 2026-08-12 |
 
 ## Workstreams
 
 | Workstream | State |
 |---|---|
 | [Rack and cable](./workstreams/rack-and-cable.md) | In progress — racked 2026-08-11, cable management in; cabling planned 2026-08-12 |
-| [Network integration](./workstreams/network.md) | Not started — addressing decision open |
+| [Network integration](./workstreams/network.md) | In progress — uplinks decided 2026-08-12 (direct to core, no Meraki layer); addressing decision open |
 | [Bring-up](./workstreams/bring-up.md) | Blocked on rack + network |
 | [Held VMs & cold storage](./workstreams/held-vms-and-cold-storage.md) | Standing quarantine rule in force; disk-destroy decision pending |
 

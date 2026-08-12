@@ -14,29 +14,28 @@ management/iSCSI/vMotion connectivity working, and an addressing decision
 - The AIU LAN at CO is `10.20.0.0/16` with the gateway at `10.20.0.1`.
 - No uplink or addressing decisions made yet.
 
-## Open decision: uplink architecture (as of 2026-08-11)
+## Decision: uplink architecture — direct to existing core (2026-08-12)
 
-The S5212F-ON pair stays as this stack's ToRs either way; the question is
-the path to the core, using the three Meraki switches that came over from
-AEP (an SFP fiber pair + a copper switch) or not:
+**Decided 2026-08-12: the stack uplinks directly to the existing CO core
+switching** — QSFP → quad-SFP breakout fiber from each S5212F-ON to the
+core, and iDRAC/OOB management on the existing CO copper network. The
+three Meraki switches that came over from AEP (SFP fiber pair + copper
+switch) are **not** used for this stack; their disposition (spares vs.
+redeploy elsewhere) is TBD.
 
-- **Option A — direct to existing core switching**: QSFP → quad-SFP breakout
-  fiber from each S5212F-ON to the CO core; management lands on existing CO
-  copper if ports are available. Fewer devices/failure points, less UPS
-  draw, no recurring Meraki licenses (Meraki switches stop forwarding when
-  licensing lapses). Isolation for east-west traffic (iSCSI/vMotion/VM-VM)
-  is unaffected — that never leaves the Dells.
-- **Option B — dedicated Meraki layer**: the Meraki SFP pair as a redundant
-  data aggregation layer between the ToRs and the core, plus the Meraki
-  copper switch for iDRAC/OOB management. Buys a private north-south
-  aggregation layer and dashboard visibility, at the cost of two extra
-  hops, power, and per-device recurring licenses.
+**Rationale:** east-west isolation (iSCSI / vMotion / VM-VM) is unaffected
+— that traffic never leaves the S5212F-ON pair, which remains this stack's
+own switching domain. A Meraki aggregation layer would sit only in the
+north-south path while adding two hops, two failure points, UPS draw, and
+recurring per-device Meraki licenses (Meraki switches stop forwarding when
+licensing lapses). Direct-to-core is simpler to operate and to reason
+about through the pending OS10 upgrade and any future Proxmox rebuild.
 
-**Leaning (2026-08-11): Option A** — sleeping on it. Pre-reqs to verify for
-Option A: spare SFP ports + optic compatibility on the core, both ToRs get
-their own uplink path, core ports can trunk this stack's VLANs, and whether
-the CO management copper network has spare ports (if not, the single Meraki
-copper switch for OOB is still on the table).
+**Pre-reqs to verify during implementation** (tracked in Next steps):
+spare SFP ports + optic/breakout compatibility on the core, each ToR gets
+its own uplink path (redundancy preserved), core ports trunk this stack's
+VLANs, and the CO management copper network has spare ports for iDRAC/OOB
+(if it turns out not to, the single Meraki copper switch is the fallback).
 
 ## Open questions
 
@@ -52,8 +51,11 @@ copper switch for OOB is still on the table).
 
 ## Next steps
 
+- [x] Decide uplink architecture — direct to existing core, no Meraki layer (2026-08-12, see Decision above)
+- [ ] Verify core-side pre-reqs: spare SFP ports, optic/breakout compatibility, per-ToR redundant paths, VLAN trunking
+- [ ] Verify spare copper ports on the CO management network for iDRAC/OOB (fallback: single Meraki copper switch)
 - [ ] Decide addressing: keep `10.12.x` routed vs. re-IP (record decision + rationale here)
-- [ ] Identify uplink ports on the CO side and patch the S5212F-ON uplinks
+- [ ] Identify uplink ports on the CO side and patch the S5212F-ON uplinks (QSFP → quad-SFP breakout per ToR)
 - [ ] Configure/verify VLANs for management, iSCSI, and vMotion
 - [ ] Verify iDRAC/management reachability for all three R650s, the PowerStore, and both switches
 - [ ] Update DNS records if re-IP'd
